@@ -1,18 +1,18 @@
-let flights = [
-  { id: 00, to: "Bilbao", from: "Barcelona", cost: 1600, scale: false },
-  { id: 01, to: "New York", from: "Barcelona", cost: 700, scale: false },
-  { id: 02, to: "Los Angeles", from: "Madrid", cost: 1100, scale: true },
-  { id: 03, to: "Paris", from: "Barcelona", cost: 210, scale: false },
-  { id: 04, to: "Roma", from: "Barcelona", cost: 150, scale: false },
-  { id: 05, to: "London", from: "Madrid", cost: 200, scale: false },
-  { id: 06, to: "Madrid", from: "Barcelona", cost: 90, scale: false },
-  { id: 07, to: "Tokyo", from: "Madrid", cost: 1500, scale: true },
-  { id: 08, to: "Shangai", from: "Barcelona", cost: 800, scale: true },
-  { id: 09, to: "Sydney", from: "Barcelona", cost: 150, scale: true },
+const flights = [
+  { id: 0, to: "Bilbao", from: "Barcelona", cost: 1600, scale: false },
+  { id: 1, to: "New York", from: "Barcelona", cost: 700, scale: false },
+  { id: 2, to: "Los Angeles", from: "Madrid", cost: 1100, scale: true },
+  { id: 3, to: "Paris", from: "Barcelona", cost: 210, scale: false },
+  { id: 4, to: "Roma", from: "Barcelona", cost: 150, scale: false },
+  { id: 5, to: "London", from: "Madrid", cost: 200, scale: false },
+  { id: 6, to: "Madrid", from: "Barcelona", cost: 90, scale: false },
+  { id: 7, to: "Tokyo", from: "Madrid", cost: 1500, scale: true },
+  { id: 8, to: "Shangai", from: "Barcelona", cost: 800, scale: true },
+  { id: 9, to: "Sydney", from: "Barcelona", cost: 150, scale: true },
   { id: 10, to: "Tel-Aviv", from: "Madrid", cost: 150, scale: false },
 ];
 
-let dataOk = true;
+const dataOk = true;
 
 function welcome() {
   console.log("***********************************");
@@ -76,17 +76,18 @@ function lastFiveFlights() {
 }
 
 const checkOptions = (optionSelected, dataOk) => {
-  let optionsAvaible = ["1", "2", "3"];
+  const optionsAvaible = ["1", "2", "3"];
   if (!optionsAvaible.includes(optionSelected)) {
     alert("Enter a valid option");
     dataOk = false;
   }
+
   return dataOk;
 };
 
 function selectRol() {
   const rol = prompt("Select your rol:\n 1-USER\n 2-ADMIN\n");
-  let isValidOption = checkOptions(rol, dataOk);
+  const isValidOption = checkOptions(rol, dataOk);
   if (isValidOption) {
     switch (rol) {
       case "1":
@@ -107,10 +108,10 @@ function selectRol() {
 }
 
 const selectAdminOptions = () => {
-  let adminOptions = prompt(
+  const adminOptions = prompt(
     "Select one option :\n 1-Create a new flight\n 2-Delete flight by id\n 3-Exit"
   );
-  let isValidOption = checkOptions(adminOptions, dataOk);
+  const isValidOption = checkOptions(adminOptions, dataOk);
   if (isValidOption) {
     switch (adminOptions) {
       case "1":
@@ -130,10 +131,10 @@ const selectAdminOptions = () => {
 };
 
 const selectUserOptions = () => {
-  let userOptions = prompt(
+  const userOptions = prompt(
     "Select one option :\n 1-Search flight by price\n 2-Search flight by destination\n 3-Exit"
   );
-  let isValidOption = checkOptions(userOptions, dataOk);
+  const isValidOption = checkOptions(userOptions, dataOk);
   if (isValidOption) {
     switch (userOptions) {
       case "1":
@@ -158,8 +159,8 @@ const exit = () => {
 };
 
 function createFlight() {
-  let totalFlights = flights.length;
-  let newFlight = {
+  const totalFlights = flights.length;
+  const newFlight = {
     id: flights.length,
     to: "",
     from: "",
@@ -203,7 +204,7 @@ function createFlight() {
 }
 
 function deleteFlightById() {
-  let flightId = prompt("Enter the flight id you want to delete");
+  const flightId = prompt("Enter the flight id you want to delete");
   if (isNaN(flightId)) {
     alert(`Enter a valid id !!!`);
     deleteFlightById();
@@ -226,7 +227,8 @@ const searchFlightByDestination = () => {
   do {
     destination = prompt(`Enter destination`);
   } while (destination === "" || destination === null);
-  let city = firstLetterToUpperCase(destination);
+
+  const city = firstLetterToUpperCase(destination);
   const resultFlights = flights.filter((flight) => flight.to === city);
   if (resultFlights.length >= 0) {
     showFlights(resultFlights);
@@ -261,7 +263,7 @@ function searchFlightByPrice() {
     const option = prompt(
       `Select an option:\n 1-Flights lower than ${price}\n 2-Flights upper than ${price}`
     );
-    let isValidOption = checkOptions(option, dataOk);
+    const isValidOption = checkOptions(option, dataOk);
     if (isValidOption) {
       switch (option) {
         case "1":
