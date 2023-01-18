@@ -19,7 +19,7 @@ function iniciamosCalculadoraPRO() {
   };
 
   numerosIntroducidos = introducirNum();
-  arrayNumbers = numerosIntroducidos.pop();
+  numerosIntroducidos.pop();
 
   const operacionesCalculadora = () => {
     const operaciones = [];
