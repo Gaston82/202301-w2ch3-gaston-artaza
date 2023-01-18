@@ -23,7 +23,7 @@ const ranking = [
   },
 ];
 
-let newPLayer = {
+const newPLayer = {
   player: "",
   points: 0,
 };
@@ -40,16 +40,17 @@ const player = () => {
   }
 };
 
-const createCard = (card, bingo, nextTurn, attempt) => {
+const createCard = (card) => {
   for (let index = 0; card.length < 15; index++) {
     const element = generateRandomNumber();
     if (!card.includes(element)) {
       card.push(element);
     }
   }
+
   orderNumber(card);
   showCard(card);
-  let selectCard = confirmCard();
+  const selectCard = confirmCard();
   if (selectCard) {
     do {
       selectNumber();
@@ -61,7 +62,7 @@ const createCard = (card, bingo, nextTurn, attempt) => {
 };
 
 const selectNumber = () => {
-  let number = generateRandomNumber();
+  const number = generateRandomNumber();
   if (!selectedNumbers.includes(number)) {
     selectedNumbers.push(number);
     alert(`The number is : ${selectedNumbers[index]}`);
@@ -82,7 +83,7 @@ const findNumber = (number) => {
     );
   } else {
     for (let index = 0; index < card.length; index++) {
-      let element = card[index];
+      const element = card[index];
       if (number === element) {
         card[index] = "x";
         founded += 1;
@@ -90,13 +91,14 @@ const findNumber = (number) => {
       }
     }
   }
+
   if (founded >= 15) {
     alert(`Bingooooo!!!`);
     bingo = true;
     nextTurn = false;
     alert(`You have completed the card in ${attempt} attempts`);
     console.log(playerPoints(attempt));
-    let play = confirm(`Do you want to play again?`);
+    const play = confirm(`Do you want to play again?`);
     if (play) {
       card = [];
       bingo = false;
@@ -110,9 +112,11 @@ const findNumber = (number) => {
       exit = true;
     }
   }
+
   if (founded >= 5 && line) {
     checkLine(card);
   }
+
   showCard(card);
 
   if (!bingo) {
@@ -137,9 +141,7 @@ const showCard = (card) => {
 };
 
 const orderNumber = (card) => {
-  const sortedArray = card.sort(function (a, b) {
-    return a - b;
-  });
+  const sortedArray = card.sort((a, b) => a - b);
   return sortedArray;
 };
 
@@ -156,6 +158,7 @@ const checkLine = (card) => {
       line = false;
       break;
     }
+
     if (
       card[5] === "x" &&
       card[6] === "x" &&
@@ -167,6 +170,7 @@ const checkLine = (card) => {
       line = false;
       break;
     }
+
     if (
       card[10] === "x" &&
       card[11] === "x" &&
@@ -179,6 +183,7 @@ const checkLine = (card) => {
       break;
     }
   }
+
   return line;
 };
 
@@ -191,9 +196,7 @@ const rankingExplanation = () => {
 const playerPoints = (attempt) => {
   newPLayer.points = 100 - attempt;
   ranking.push(newPLayer);
-  const rankingSorted = ranking.sort(function (a, b) {
-    return b.points - a.points;
-  });
+  const rankingSorted = ranking.sort((a, b) => b.points - a.points);
   return rankingSorted;
 };
 

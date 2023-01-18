@@ -1,6 +1,6 @@
 let resultadosObtenidos = [];
 let numerosIntroducidos = [];
-let datosObtenidos = [];
+const datosObtenidos = [];
 
 function iniciamosCalculadoraPRO() {
   const introducirNum = () => {
@@ -10,10 +10,11 @@ function iniciamosCalculadoraPRO() {
       if (isNaN(datos)) {
         alert("Debes introducir solo números NO letras.");
         return introducirNum();
-      } else {
-        datosObtenidos.push(datos);
       }
+
+      datosObtenidos.push(datos);
     } while (datos !== 0);
+
     return datosObtenidos;
   };
 
@@ -21,7 +22,7 @@ function iniciamosCalculadoraPRO() {
   arrayNumbers = numerosIntroducidos.pop();
 
   const operacionesCalculadora = () => {
-    let operaciones = [];
+    const operaciones = [];
     if (numerosIntroducidos.length > 1) {
       const suma = numerosIntroducidos.reduce(
         (valorInicial, segundoValor) => valorInicial + segundoValor
@@ -50,20 +51,24 @@ function iniciamosCalculadoraPRO() {
       return operaciones;
     }
   };
+
   resultadosObtenidos = operacionesCalculadora();
   const mostramosResultadosOperaciones = () => {
     if (numerosIntroducidos.length > 2) {
       alert("Los resultados son: " + resultadosObtenidos);
     }
   };
+
   mostramosResultadosOperaciones();
   const repetimosProceso = () => {
     if (confirm("Quieres volver hacer calculos?")) {
       return iniciamosCalculadoraPRO();
-    } else {
-      alert("Gracias por usar nuestra calculadora PRO.");
     }
+
+    alert("Gracias por usar nuestra calculadora PRO.");
   };
+
   repetimosProceso();
 }
+
 iniciamosCalculadoraPRO();
